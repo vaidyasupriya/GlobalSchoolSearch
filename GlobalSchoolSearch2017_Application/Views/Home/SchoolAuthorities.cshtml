@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "SchoolAuthorities";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+
+@*<h2>Dear School Authorities</h2>*@
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading"><h3>Dear School Authorities</h3></div>
+    <div class="panel-body">
+        <div class="col-md-8">
+            @*<p>Dear School Authorities,</p>*@
+
+            <p align="justify">Is your school registered on <a href="https://globalschoolsearch.azurewebsites.net/"><strong>Global School Search</strong></a> </p>
+            <p align="justify">Just imagine, some family from some other part of the World , is planning to move to your city and they are looking for best schools for their kids.  Do they know about your school ?  Do they know what type of school is it or when admissions are starting ?   No !!</p>
+
+            <p align="justify">So, how about having a collective database of schools ?</p>
+
+            <p align="justify"><strong>Global School Search</strong> is website which will help people to search for best schools in their desired city. It gives information about schools in terms of address, contact details, type of school, examination board and admission details. This collective database of school will definitely help people in reducing efforts taken, time and money spent on just finding the best school.</p>
+
+            <p align="justify">The sole purpose of this website is to help schools to reach maximum parents looking for schools and to help parents in finding the best suitable schools for the kids. And this purpose will be served only when schools are registered on it.</p>
+
+            Here are three easy steps to register your school on <strong>Global School Search </strong>
+            <ol>
+                <li>@Html.ActionLink("Register", "Register", "Account") on the website with school's official email addess</li>
+                <li>You will receive a verificaiton mail on this email address. Confirm your email address</li>
+                <li>@Html.ActionLink("Login", "Login", "Account") with your school's official email addess and click on @Html.ActionLink("Create School", "Create", "Schools") to register your school</li>
+            </ol>
+            </p>
+            <p align="justify"><a class="btn btn-info" href=@Url.Action("Register", "Account")>Register &raquo;</a></p>
+
+            <p align="justify">If your school is already present on this website, don't worry it is added by administrators. Write us a mail and take ownership of your school. </p>
+        </div>
+        <div class="col-md-4">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Advertise8 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2361562748118340"
+                 data-ad-slot="9965980082"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+</div>
+
+
+

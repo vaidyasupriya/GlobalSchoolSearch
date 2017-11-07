@@ -1,0 +1,178 @@
+﻿@model GlobalSchoolSearch2017_Application.Models.School
+
+@{
+    ViewBag.Title = "Delete";
+}
+<br />
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3> Delete school from our database</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-9">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SchoolName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.SchoolName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Address)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Postcode)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Postcode)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Contact_No_)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Contact_No_)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Alternate_Contact_No_)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Alternate_Contact_No_)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Website)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Website)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Examination_Board)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Examination_Board)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Type_of_School)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Type_of_School)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Admission_Criteria)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Admission_Criteria)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Admission_Start_Date)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Admission_Start_Date)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Application_Form)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Application_Form)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Submission_Date)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Submission_Date)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Additional_Information_)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Additional_Information_)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Authorizer_Email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Authorizer_Email)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.City.CountryName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.City.CountryName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Country.CountryName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Country.CountryName)
+                        </dd>
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-info" /> |
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+                    }
+                </div>
+                <div class="col-md-3">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Advertise17 -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-2361562748118340"
+                         data-ad-slot="1114153899"
+                         data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

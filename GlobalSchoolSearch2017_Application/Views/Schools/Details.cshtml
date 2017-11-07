@@ -1,0 +1,190 @@
+﻿@model GlobalSchoolSearch2017_Application.Models.School
+
+@{
+    ViewBag.Title = "Details";
+}
+<link href="~/Content/Details.css" rel="stylesheet" />
+<h2>Details</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>School</h4>
+            </div>
+            <div class="col-md-8">
+                <a class="btn btn-info" href=@Url.Action("CreateForSpecificSchool", "Reviews", new {CountryName= Model.CountryName, CityName=Model.CityName, SchoolName=Model.SchoolName })>Write a Review &raquo;</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-8">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SchoolName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SchoolName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.City.CityName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.City.CityName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Country.CountryName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Country.CountryName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Postcode)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Postcode)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Contact_No_)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Contact_No_)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Alternate_Contact_No_)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Alternate_Contact_No_)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Website)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Website)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Examination_Board)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Examination_Board)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Type_of_School)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Type_of_School)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Admission_Criteria)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Admission_Criteria)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Admission_Start_Date)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Admission_Start_Date)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Application_Form)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Application_Form)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Submission_Date)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Submission_Date)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Additional_Information_)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Additional_Information_)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Authorizer_Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Authorizer_Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Rating)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Rating)
+
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-4">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Advertise14 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2361562748118340"
+                     data-ad-slot="8274813836"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { schoolName = Model.SchoolName }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

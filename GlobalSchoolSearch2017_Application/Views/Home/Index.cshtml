@@ -1,0 +1,172 @@
+﻿@model GlobalSchoolSearch2017_Application.Models.School
+
+@{
+    ViewBag.Title = "Schools In Any City";
+}
+<link href="~/Content/Jumbotronstyle.css" rel="stylesheet" />
+
+<style>
+    .tooltip .tooltip-inner {
+        background-color: navy;
+    }
+</style>
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+<script src="~/Scripts/jquery-1.12.4.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+        $("#CityName").prop("disabled", true);
+        $("#CountryName").click(function () {
+
+            if ($("#CountryName").val() != 0) {
+                var CityOptions = {};
+                CityOptions.url = "/SchoolSearch/getCities";
+                CityOptions.type = "POST";
+                CityOptions.data = JSON.stringify({ Country: $("#CountryName").val() });
+                CityOptions.datatype = "json";
+                CityOptions.contentType = "application/json";
+                CityOptions.success = function (CityList) {
+                    $("#CityName").empty();
+                    for (var i = 0; i < CityList.length; i++) {
+                        $("#CityName").append("<option>" + CityList[i] + "</option>");
+                    }
+                    $("#CityName").prop("disabled", false);
+                };
+                CityOptions.error = function () {
+                    alert(toString($("#CityName").val()));
+                    alert("Error in getting City List!!");
+                };
+                $.ajax(CityOptions);
+            }
+            else {
+                $("#CityName").empty();
+                $("#CityName").prop("disabled", true);
+            }
+
+        });
+    });
+</script>
+
+<br />
+@*<marquee> New schools are added: A.K Joshi Thane, Podar International School Thane. SSC, ICSE, CBSE, CIE, IB, GCSE, IGCESE, Search for schools in Thane, Pune (India) International schools in Netherlands , Amsterdam, De Hague, Rotterdam  </marquee>*@
+
+<div class="jumbotron">
+
+</div>
+
+@using (Html.BeginForm("Search", "SchoolSearch", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3>Search</h3></div>
+        <div class="panel-body">
+            
+            <div class="col-md-8">
+                <bs-form-inlne class="form-inline ">
+                    <h2> Enter City:</h2> @*@Html.TextBox("searchString")*@
+                    <input type="text" name="searchString" class="form-control" data-toggle="tooltip" data-placement="auto" title="At present school data is available only for cities Thane, Pune, Hyderabad from India and for major cities from Netherlands"/>
+                    <input type="submit" id="search" value="Find Schools" class="btn btn-info"/>
+                </bs-form-inlne>
+                @*<hr />*@ <br/><br/>
+                <h6>Or</h6>
+                <h2>Select Country and City</h2>
+                <bs-form-inline autocomplete="on" class="form-inline">
+                    <div class="form-group" data-toggle="tooltip" data-placement="auto" title="At present school data is available only for cities Thane, Pune, Hyderabad from India and for major cities from Netherlands">
+
+                        @Html.LabelFor(model => model.CountryName, "Country", htmlAttributes: new {@class = "control-label"})
+                        @Html.DropDownList("CountryName", null, "-Please Select-", htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.CountryName, "", new {@class = "text-danger"})
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CityName, "City", htmlAttributes: new {@class = "control-label"})
+
+                        @Html.DropDownList("CityName", null, "-Please Select-", htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.CityName, "", new {@class = "text-danger"})
+                    </div>
+
+                    <input type="submit" id="search" value="Find Schools" class="btn btn-info"/>
+
+                </bs-form-inline>
+            </div>
+            <div class="col-md-4">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Advertise1 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2361562748118340"
+                     data-ad-slot="6214916261"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="panel panel-default">
+    @* <div class="row">*@
+    <div class="panel-heading"><h3>Information</h3></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Dear Parents</h2>
+                <p>
+                    Are you looking for the best suitable school for your kids ? Do you want to know what all schools are there in your area ? <b>Global School Search</b> will help you to find all the schools in your area.
+                </p>
+                <p><a class="btn btn-info" href=@Url.Action("SchoolSearch", "SchoolSearch")>Search School &raquo;</a></p>
+                <p>Write a review about the school where your kids are studying</p>
+                <p>
+                    <a class="btn btn-info" href=@Url.Action("Create", "Reviews")>Write a Review &raquo;</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Advertise2 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2361562748118340"
+                     data-ad-slot="2063439335"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Dear School Authorities</h2>
+                <p>
+                    Here are three easy steps to register your school on <b>Global School Search</b>.
+                    <ol>
+                        <li>@Html.ActionLink("Register", "Register", "Account") on the website with school's official email addess</li>
+                        <li>You will receive a verificaiton mail on this email address. Confirm your email address</li>
+                        <li>@Html.ActionLink("Login", "Login", "Account") with your school's official email addess and click on @Html.ActionLink("Create School", "Create", "Schools") to register your school</li>
+                    </ol>
+                </p>
+                <p><a class="btn btn-info" href=@Url.Action("Register", "Account")>Register &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Advertise3 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2361562748118340"
+                     data-ad-slot="7053231507"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+
+    </div>
+</div>
+

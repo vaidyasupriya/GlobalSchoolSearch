@@ -1,0 +1,140 @@
+﻿@model PagedList.IPagedList<GlobalSchoolSearch2017_Application.Models.School>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+@{
+    ViewBag.Title = "School Search";
+}
+<br />
+
+@if (ViewBag.SchoolsNotFound)
+{
+    <p style="color:red"><strong> No schools found!! Enter the name of big city nearby !!</strong></p>
+}
+
+<marquee>    
+    <strong> Highest ranked schools in <span style="color:magenta"> @ViewBag.currentCity : </span></strong>
+        @foreach (var item in ViewBag.TopSchools)
+        {
+           <span style="color:#0000ff">@item.SchoolName   ;</span>
+        }
+    
+</marquee>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Schools in @ViewBag.currentCity</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-10 table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.ActionLink("School", "Search", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.SchoolSortParm, currentFilter = ViewBag.CurrentFilter })
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            Postcode
+                        </th>
+                        <th>
+                            @Html.ActionLink("City", "Search", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.CitySortParm, currentFilter = ViewBag.CurrentFilter })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Country", "Search", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.CountrySortParm, currentFilter = ViewBag.CurrentFilter })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Examination Board", "Search", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.ExamSortParm, currentFilter = ViewBag.CurrentFilter })
+                        </th>
+                        <th>
+                            Type of School
+                        </th>
+                        <th>
+                            @*Rating*@
+                            @Html.ActionLink("Average Rating*", "Search", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.RatingSortParm, currentFilter = ViewBag.CurrentFilter })
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                                <strong style="color:darkblue; text-decoration:underline">
+                                    @Html.ActionLink(item.SchoolName, "Details", new { schoolName = item.SchoolName }, new { target = "_blank" })
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Postcode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.City.CityName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Country.CountryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Examination_Board)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type_of_School)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.Rating)*@
+                                <strong style="color:darkblue; text-decoration:underline">
+                                    @if (item.Rating != null)
+                                    {
+                                        @Html.ActionLink(Convert.ToSingle(item.Rating).ToString(), "ReviewsPerSchool", "Reviews", new { schoolName = item.SchoolName }, new { target = "_blank" })
+                                    }
+
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { schoolName = item.SchoolName }, new { target = "_blank" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="col-md-2">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Advertise10 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2361562748118340"
+                     data-ad-slot="7966502704"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+
+
+
+@Html.ActionLink("Back to Search", "SchoolSearch")
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Search",
+    new
+    {
+        page,
+        sortOrder = ViewBag.CurrentSort,
+        currentFilter = ViewBag.CurrentFilter
+    }))
+
+

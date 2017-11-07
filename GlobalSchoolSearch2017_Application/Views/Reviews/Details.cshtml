@@ -1,0 +1,74 @@
+﻿@model GlobalSchoolSearch2017_Application.Models.Review
+
+@{
+    ViewBag.Title = "Details";
+}
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Review Details</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-8">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ReviewText)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ReviewText)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Rating)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.City.CountryName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.City.CountryName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Country.CountryName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Country.CountryName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.School.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.School.Address)
+                </dd>
+
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Advertise19 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2361562748118340"
+                 data-ad-slot="6271590733"
+                 data-ad-format="auto"></ins>
+            <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

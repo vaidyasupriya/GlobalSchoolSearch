@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Parents";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+
+<h2>Dear Parents</h2>
+<br />
+<div class="row">
+
+    <div class="col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>Search for schools</h3></div>
+            <div class="panel-body">
+                @*<div class="row">
+                    <div class="col-md-9">*@
+                <p>
+                    Are you looking for the best suitable school for your kids ? Do you want to know what all schools are there in your area ? <b>Global School Search</b> will help you to find all the schools in your area.
+                </p>
+
+                <p>
+                    <a class="btn btn-info" href=@Url.Action("SchoolSearch", "SchoolSearch")>Search School &raquo;</a>
+                </p>
+                @*</div>
+                        <div class="col-md-3">
+                            Advertise
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>Write a Review</h3></div>
+            <div class="panel-body">
+                @*<div class="row">
+                    <div class="col-md-9">*@
+                <p>
+                    Write a review and help other parents to know about school where your kids are studying
+                </p>
+                <p>
+                    <a class="btn btn-info" href=@Url.Action("Create", "Reviews")>Write a Review &raquo;</a>
+                </p>
+                @*</div>
+                    <div class="col-md-3">
+                       ADvertise
+                    </div>*@
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Advertise12 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2361562748118340"
+             data-ad-slot="9295896242"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,144 @@
+﻿@model PagedList.IPagedList<GlobalSchoolSearch2017_Application.Models.School>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>List of schools</h3>
+
+    </div>
+    <div class="panel-body">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <div class="row">
+            <div class="col-md-10 table-responsive ">
+                <table class="table table-condensed">
+                    <thead> 
+                        <tr>
+                            <th>
+                                @*  @Html.DisplayNameFor(model => model.SchoolName)*@
+                                @Html.ActionLink("School", "Index", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.SchoolSortParm, currentFilter = ViewBag.CurrentFilter })
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Address)*@
+                                Address
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Postcode)*@
+                                Postcode
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.City.CityName)*@
+                                @Html.ActionLink("City", "Index", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.CitySortParm, currentFilter = ViewBag.CurrentFilter })
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Country.CountryName)*@
+                                @Html.ActionLink("Country", "Index", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.CountrySortParm, currentFilter = ViewBag.CurrentFilter })
+                            </th>
+
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Examination_Board)*@
+                                @Html.ActionLink("Examination Board", "Index", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.ExamSortParm, currentFilter = ViewBag.CurrentFilter })
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Type_of_School)*@
+                                Type_Of_School
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Rating)*@
+                                @Html.ActionLink("Average Rating*", "Index", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.RatingSortParm, currentFilter = ViewBag.CurrentFilter })
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+            {
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.SchoolName)*@
+                                    <strong style="color:darkblue; text-decoration:underline">
+                                        @Html.ActionLink(item.SchoolName, "Details", new { schoolName = item.SchoolName }, new { target = "_blank" })
+                                    </strong>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Postcode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.City.CityName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Country.CountryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Examination_Board)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type_of_School)
+                                </td>
+                                <td>
+                                    @* @Html.DisplayFor(modelItem => item.Rating)*@
+                                    <strong style="color:darkblue; text-decoration:underline">
+                                        @if (item.Rating != null)
+                                        {
+                                            @Html.ActionLink(Convert.ToSingle(item.Rating).ToString(), "ReviewsPerSchool", "Reviews", new { schoolName = item.SchoolName }, new { target = "_blank" })}
+
+                                    </strong>
+                                </td>
+
+                                <td>
+
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        <div>
+                                            @Html.ActionLink("Edit", "Edit", new { schoolName = item.SchoolName }) |
+                                            @Html.ActionLink("Delete", "Delete", new { schoolName = item.SchoolName })
+                                        </div>
+                                    }
+                                    @Html.ActionLink("Details", "Details", new { schoolName = item.SchoolName })
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Advertise13 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2361562748118340"
+                     data-ad-slot="6275336459"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new
+    {
+        page,
+        sortOrder = ViewBag.CurrentSort,
+        currentFilter = ViewBag.CurrentFilter
+    }))
+
+

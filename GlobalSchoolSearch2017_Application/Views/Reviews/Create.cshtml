@@ -1,0 +1,175 @@
+﻿@model GlobalSchoolSearch2017_Application.Models.Review
+
+@{
+    ViewBag.Title = "Write a Review";
+}
+@*<script src="~/Scripts/UI-SpecificScripts/ReviewCreateView.js"></script>*@
+<script src="~/Scripts/jquery-1.12.4.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[datatoggle="tooltip"]').tooltip();
+        $("#SchoolName").prop("disabled", true);
+        $("#CityName").prop("disabled", true);
+
+
+        $("#CountryName").click(function () {
+
+            if ($("#CountryName").val() != 0) {
+                var CityOptions = {};
+                CityOptions.url = "/Reviews/GetCities";
+                CityOptions.type = "POST";
+                CityOptions.data = JSON.stringify({ Country: $("#CountryName").val() });
+                CityOptions.datatype = "json";
+                CityOptions.contentType = "application/json";
+                CityOptions.success = function (CityList) {
+                    $("#CityName").empty();
+                    for (var i = 0; i < CityList.length; i++) {
+                        $("#CityName").append("<option>" + CityList[i] + "</option>");
+                    }
+                    $("#CityName").prop("disabled", false);
+                };
+                CityOptions.error = function () {
+                    alert(toString($("#CityName").val()));
+                    alert("Error in getting City List!!");
+                };
+                $.ajax(CityOptions);
+                $("#CityName").change(function () {
+                    if ($("#CityName").val() != 0) {
+                        var schoolOptions = {};
+                        schoolOptions.url = "/Reviews/GetSchools";
+                        schoolOptions.type = "POST";
+                        schoolOptions.data = JSON.stringify({ City: $("#CityName").val() });
+                        schoolOptions.datatype = "json";
+                        schoolOptions.contentType = "application/json";
+                        schoolOptions.success = function (schoolList) {
+                            $("#SchoolName").empty();
+                            for (var i = 0; i < schoolList.length; i++) {
+                                $("#SchoolName").append("<option>" + schoolList[i] + "</option>");
+                            }
+                            $("#SchoolName").prop("disabled", false);
+
+                        };
+                        schoolOptions.error = function () {
+                            alert(toString($("#SchoolName").val()));
+                            alert("Error in getting School List!!");
+                        };
+                        $.ajax(schoolOptions);
+                    }
+                });
+
+
+
+            } else {
+                $("#CityName").empty();
+                $("#CityName").prop("disabled", true);
+            }
+        });
+
+        $("#Rating").change(function () {
+            var x = $("#Rating").val();
+            if (x < 1 || x > 5) {
+                alert("Please enter number in the range of 1 to 5");
+            }
+
+        });
+
+
+    });
+</script>
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>Write a Reivew</h2>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CountryName,  htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("CountryName", null, "Select Country", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CountryName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CityName,  htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("CityName", null, "Select City", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CityName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SchoolName,  htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("SchoolName", null, "Select School", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SchoolName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ReviewText, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ReviewText, new { htmlAttributes = new { @class = "form-control", @datatoggle="tooltip", @title = "Please add review comments" } })
+                                @Html.ValidationMessageFor(model => model.ReviewText, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control", id = "Rating", @datatoggle = "tooltip", @title = "Please enter the number in the range of 1 to 5" } })
+                                @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model=>model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DisplayFor(model => model.Date)
+                            </div>
+                        </div>*@
+
+                        @Html.HiddenFor(model=>model.Date)
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-info" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Advertise20 -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-2361562748118340"
+                         data-ad-slot="5683954294"
+                         data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+@if (Request.IsAuthenticated)
+{
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

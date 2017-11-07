@@ -1,0 +1,62 @@
+﻿@*@model  PagedList.IPagedList<GlobalSchoolSearch2017_Application.Models.Review>
+    @using PagedList.Mvc;
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>*@
+
+@model GlobalSchoolSearch2017_Application.Models.School
+
+
+@{
+    ViewBag.Title = "ReviewsPerSchool";
+}
+
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>@ViewBag.SchoolName</h2>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-9 table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Review</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Reviews)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReviewText)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Rating)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Advertise23 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2361562748118340"
+                     data-ad-slot="4523394797"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<button type="button" class="btn btn-info" onclick="window.close();">Close Window</button>
+
+
