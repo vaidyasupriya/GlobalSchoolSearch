@@ -124,7 +124,7 @@ namespace GlobalSchoolSearch2017_Application.Controllers
         public ActionResult Create()
         {
             School newSchool = new School();
-            newSchool.Date_of_Updatation = DateTime.Today;
+            newSchool.Date_of_Updatation = DateTime.Today.Date;
             ViewBag.CityName = new SelectList(db.Cities, "CityName", "CityName");
             ViewBag.CountryName = new SelectList(db.Countries, "CountryName", "CountryName");
             
@@ -156,6 +156,7 @@ namespace GlobalSchoolSearch2017_Application.Controllers
         [Authorize]
         public ActionResult Edit(string schoolName)
         {
+            string userName = User.Identity.GetUserName().ToString();
             if (schoolName == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -165,9 +166,24 @@ namespace GlobalSchoolSearch2017_Application.Controllers
             {
                 return HttpNotFound();
             }
+            school.Date_of_Updatation = DateTime.Today.Date;
             ViewBag.CityName = new SelectList(db.Cities, "CityName", "CityName", school.CityName);
             ViewBag.CountryName = new SelectList(db.Countries, "CountryName", "CountryName", school.CountryName);
-            return View(school);
+
+            if (school.Authorizer_Email.Equals(userName))
+            {
+
+                return View(school);
+            }
+            else if (User.IsInRole("Administrator"))
+            {
+                return View(school);
+            }
+            else
+            {
+
+                return HttpNotFound("You are not authorized to edit this school entry");
+            }
         }
 
         // POST: Schools/Edit/5

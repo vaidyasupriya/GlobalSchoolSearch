@@ -12,7 +12,7 @@ namespace GlobalSchoolSearch2017_Application.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class School
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,11 +20,11 @@ namespace GlobalSchoolSearch2017_Application.Models
         {
             this.Reviews = new HashSet<Review>();
         }
-    
+
         public int SchoolId { get; set; }
 
         [Required]
-        [Display(Name ="School")]
+        [Display(Name = "School")]
         public string SchoolName { get; set; }
 
         [Required]
@@ -82,6 +82,7 @@ namespace GlobalSchoolSearch2017_Application.Models
 
         [Required]
         [Display(Name = "Date of Updation")]
+        [DisplayFormat(DataFormatString ="{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime Date_of_Updatation { get; set; }
     
         public virtual City City { get; set; }
