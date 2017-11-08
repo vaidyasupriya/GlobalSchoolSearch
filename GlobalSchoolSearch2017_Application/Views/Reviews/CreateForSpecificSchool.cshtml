@@ -3,10 +3,15 @@
 @{
     ViewBag.Title = "Write a Review";
 }
-@*<script src="~/Scripts/UI-SpecificScripts/ReviewCreateView.js"></script>*@
+<style>
+    .tooltip .tooltip-inner {
+        background-color: navy;
+    }
+</style>
 <script src="~/Scripts/jquery-1.12.4.js"></script>
 <script>
     $(document).ready(function () {
+        $('[datatoggle="tooltip"]').tooltip();
 
         $("#Rating").change(function () {
             var x = $("#Rating").val();
@@ -35,28 +40,21 @@
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.CountryName, "CountryName", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @*@Html.DropDownList("CountryName", null, "Select Country", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.CountryName, "", new { @class = "text-danger" })*@
-                                @Html.DisplayFor(model=>model.CountryName)
-                                
+                            <div class="col-md-10">                                
+                                @Html.DisplayFor(model=>model.CountryName)                                
                             </div>
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.CityName, "CityName", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @*@Html.DropDownList("CityName", null, "Select City", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.CityName, "", new { @class = "text-danger" })*@
+                            <div class="col-md-10">                              
                                 @Html.DisplayFor(model=>model.CityName)
                             </div>
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.SchoolName, "SchoolName", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @*@Html.DropDownList("SchoolName", null, "Select School", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.SchoolName, "", new { @class = "text-danger" })*@
+                            <div class="col-md-10">                             
                                 @Html.DisplayFor(model=>model.SchoolName)
                             </div>
                         </div>
@@ -64,7 +62,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.ReviewText, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.ReviewText, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.ReviewText, new { htmlAttributes = new { @class = "form-control", @datatoggle = "tooltip", @title = "Please add review comments" } })
                                 @Html.ValidationMessageFor(model => model.ReviewText, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -72,7 +70,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control", id = "Rating" } })
+                                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control", id = "Rating", @datatoggle = "tooltip", @title = "Please enter the number in the range of 1 to 5" } })
                                 @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
                             </div>
                         </div>

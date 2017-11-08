@@ -71,7 +71,6 @@ namespace GlobalSchoolSearch2017_Application.Controllers
                 School school = UpdateRatingForSchool(review.SchoolName, review.Rating);
                 db.Entry(school).State = EntityState.Modified;
                 db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
 
@@ -94,13 +93,13 @@ namespace GlobalSchoolSearch2017_Application.Controllers
                 School school = UpdateRatingForSchool(review.SchoolName, review.Rating);
                 db.Entry(school).State = EntityState.Modified;
                 db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
 
             ViewBag.CityName = new SelectList(db.Cities, "CityName", "CityName", review.CityName);
             ViewBag.CountryName = new SelectList(db.Countries, "CountryName", "CountryName", review.CountryName);
             ViewBag.SchoolName = new SelectList(db.Schools, "SchoolName", "SchoolName", review.SchoolName);
+
             return View(review);
         }
 

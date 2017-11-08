@@ -1,8 +1,10 @@
 ﻿.jumbotron {
     background-image: url(../Resources/NewLogo2.jpg);
     background-size: auto;
+    /*background-size: contain;*/
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
     height: 300px;
+    overflow:auto;
 }
