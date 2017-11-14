@@ -1,8 +1,21 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109608647-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109608647-1');
+    </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="keywords" content="globalschoolsearch, schoolsearch, schools, #schoolsinthane, #ICSE, #CBSE, #SSC, #IGCSE, #vasantvihar, #singhania, #DAVthane, #universalhigh, #cbsethane, #thaneschoollist, #schoolsinhyderabad, #schoolsinpune, #schoolsinamsterdam, #abhinav vidyalaya, #akshara international #arunodaya public school, #arya cambridge international, billabong high international school, blue ridge public school, brahman talent school, dhirubhai ambani international school, euro school thane, gifted minds international school, hiranandani school, holy cross thane, loyola high school, new horizon, orchids international school, saraswati high school, saraswati secondary school, st.john thane, st. joseph pashan, symbiosis international school, british school of amsterdam, #bsa, hyderabad public school, the international school of hyderabad, vidya bhavan school, vikhe patil memorial school, lok puram public school, #lokpurampublicschool, Amsterdam International Community School, #AICS, International School of Amsterdam, #ISA, Japanse School of Amsterdam, #JSA, #schoolreviews ">
+
     <title>@ViewBag.Title - Global School Search</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -28,9 +41,10 @@
                     <li>@Html.ActionLink("Parents", "Parents", "Home")</li>
                     <li>@Html.ActionLink("School Authorities", "SchoolAuthorities", "Home")</li>
 
-                   @if (Request.IsAuthenticated) { 
-                    <li>@Html.ActionLink("Countries", "Index", "Countries")</li>
-                    <li>@Html.ActionLink("Cities", "Index", "Cities")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        @*<li>@Html.ActionLink("Countries", "Index", "Countries")</li>
+                            <li>@Html.ActionLink("Cities", "Index", "Cities")</li>*@
                     }
                     <li>@Html.ActionLink("Search for school", "SchoolSearch", "SchoolSearch")</li>
                     <li>@Html.ActionLink("Schools", "Index", "Schools")</li>
@@ -41,16 +55,29 @@
             </div>
         </div>
     </div>
-<div class="container body-content">
-    @RenderBody()
-    @*<hr />*@
-        
-</div>
-<div class="container">
-    <footer  class="blockquote-footer" >
-        <p>&copy; @DateTime.Now.Year - Global School Search</p>   <p> *Disclaimer :  Rating displayed is average rating depending on the reviews submitted.  Initially school information is added by our administrators.  If the school information is managed by school itself and is updated within last three months, then rating increases by 1.</p>
-    </footer>
-</div>
+    <div class="container body-content">
+        @RenderBody()
+        @*<hr />*@
+
+    </div>
+    <div class="container">
+        <footer class="blockquote-footer">
+            <p>&copy; @DateTime.Now.Year - Global School Search</p>
+            <p>
+                <strong>*Disclaimer :</strong>
+                <ol>
+                    <li>
+                        Adminsitrators of this website are not responsible for the reviews added.
+                    </li>
+                    <li>Reviews are added by users/parents.</li>
+                    <li>Website administrators have full rights to delete reviews written using undecent, obscene, profane or offensive language.</li>
+                    <li>Website administrators have full rights to delete reviews which include any kind of advertising, spam, phone numbers, email Ids, URLs, off topic comments, illegal content, copyrighted content, sexually explicit material, personal and confidential material, hate speech</li>
+                    <li>Rating displayed is average rating depending on the reviews submitted.  Initially school information is added by our administrators.  If the school information is managed by school itself and is updated within last three months, then rating increases by 1.</li>
+
+                </ol>
+            </p>
+        </footer>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

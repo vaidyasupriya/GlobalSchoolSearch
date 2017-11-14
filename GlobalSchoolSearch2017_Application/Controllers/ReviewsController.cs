@@ -7,13 +7,14 @@ using System.Web.Mvc;
 using GlobalSchoolSearch2017_Application.Models;
 using System.Collections;
 using PagedList;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GlobalSchoolSearch2017_Application.Controllers
 {
     public class ReviewsController : Controller
     {
         private GlobalSchoolSearch2017_DatabaseEntities db = new GlobalSchoolSearch2017_DatabaseEntities();
-
 
         // GET: Reviews
         public ActionResult Index()
@@ -38,46 +39,22 @@ namespace GlobalSchoolSearch2017_Application.Controllers
         }
 
         // GET: Reviews/Create
+        [Authorize]
         public ActionResult Create()
         {
-            Review newReview = new Review();
-            newReview.Date = DateTime.Today;
-            ViewBag.CityName = new SelectList(db.Cities, "CityName", "CityName");
-            ViewBag.CountryName = new SelectList(db.Countries, "CountryName", "CountryName");
-            ViewBag.SchoolName = new SelectList(db.Schools, "SchoolName", "SchoolName");
-            return View(newReview);
-        }
-
-
-        public ActionResult CreateForSpecificSchool(string CountryName, string CityName, string SchoolName)
-      {
-            Review newReview = new Review();
-            newReview.Date = DateTime.Today;
-            newReview.CityName = CityName;
-            newReview.CountryName = CountryName;
-            newReview.SchoolName = SchoolName;
-
-            return View(newReview);
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateForSpecificSchool([Bind(Include = "Id,SchoolName,CityName,CountryName,ReviewText,Rating,Date")] Review review)
-        {
-            if (ModelState.IsValid)
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            if (currentUser.PasswordHash == null)
             {
-                db.Reviews.Add(review);
-                School school = UpdateRatingForSchool(review.SchoolName, review.Rating);
-                db.Entry(school).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Review newReview = new Review();
+                newReview.Date = DateTime.Today;
+                ViewBag.CityName = new SelectList(db.Cities, "CityName", "CityName");
+                ViewBag.CountryName = new SelectList(db.Countries, "CountryName", "CountryName");
+                ViewBag.SchoolName = new SelectList(db.Schools, "SchoolName", "SchoolName");                
+                return View(newReview);
             }
-
-            ViewBag.CityName = new SelectList(db.Cities, "CityName", "CityName", review.CityName);
-            ViewBag.CountryName = new SelectList(db.Countries, "CountryName", "CountryName", review.CountryName);
-            ViewBag.SchoolName = new SelectList(db.Schools, "SchoolName", "SchoolName", review.SchoolName);
-            return View(review);
+            ViewBag.Message = "As a school authority, you are not allowed to submit review. To submit review please login with your social account.";
+            return View("ReviewError");
         }
 
         // POST: Reviews/Create
@@ -85,10 +62,17 @@ namespace GlobalSchoolSearch2017_Application.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,SchoolName,CityName,CountryName,ReviewText,Rating, Date")] Review review)
         {
             if (ModelState.IsValid)
             {
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+
+                // string userName = User.Identity.GetUserName().ToString();
+
+                review.ReviewText = review.ReviewText + "   -   " + currentUser.DisplayName + ",   " + currentUser.HomeTown;
                 db.Reviews.Add(review);
                 School school = UpdateRatingForSchool(review.SchoolName, review.Rating);
                 db.Entry(school).State = EntityState.Modified;
@@ -100,6 +84,57 @@ namespace GlobalSchoolSearch2017_Application.Controllers
             ViewBag.CountryName = new SelectList(db.Countries, "CountryName", "CountryName", review.CountryName);
             ViewBag.SchoolName = new SelectList(db.Schools, "SchoolName", "SchoolName", review.SchoolName);
 
+            return View(review);
+        }
+
+        [Authorize]
+        public ActionResult CreateForSpecificSchool(string CountryName, string CityName, string SchoolName)
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            if (currentUser.PasswordHash == null)
+            {
+
+                Review newReview = new Review();
+                // string userName = User.Identity.GetUserName().ToString();           
+                newReview.Date = DateTime.Today;
+                newReview.CityName = CityName;
+                newReview.CountryName = CountryName;
+                newReview.SchoolName = SchoolName;                
+                return View(newReview);
+            }
+            ViewBag.Message = "As a school authority, you are not allowed to submit review. To submit review please login with your social account.";
+            return View("ReviewError");
+        }
+
+        public ActionResult ReviewError()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateForSpecificSchool([Bind(Include = "Id,SchoolName,CityName,CountryName,ReviewText,Rating,Date")] Review review)
+        {
+            if (ModelState.IsValid)
+            {
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                review.ReviewText = review.ReviewText + "   -   " + currentUser.DisplayName + ",   " + currentUser.HomeTown;
+
+                db.Reviews.Add(review);
+                School school = UpdateRatingForSchool(review.SchoolName, review.Rating);
+                db.Entry(school).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "";
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.CityName = new SelectList(db.Cities, "CityName", "CityName", review.CityName);
+            ViewBag.CountryName = new SelectList(db.Countries, "CountryName", "CountryName", review.CountryName);
+            ViewBag.SchoolName = new SelectList(db.Schools, "SchoolName", "SchoolName", review.SchoolName);
             return View(review);
         }
 

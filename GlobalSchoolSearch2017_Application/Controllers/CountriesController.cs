@@ -10,6 +10,7 @@ using GlobalSchoolSearch2017_Application.Models;
 
 namespace GlobalSchoolSearch2017_Application.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class CountriesController : Controller
     {
         private GlobalSchoolSearch2017_DatabaseEntities db = new GlobalSchoolSearch2017_DatabaseEntities();

@@ -1,41 +1,53 @@
-﻿@model IEnumerable<GlobalSchoolSearch2017_Application.Models.Review>
+﻿@using Microsoft.AspNet.Identity
+
+@model IEnumerable<GlobalSchoolSearch2017_Application.Models.Review>
 
 @{
     ViewBag.Title = "Index";
 }
+<link href="~/Content/TableStyle.css" rel="stylesheet" />
+
 <br />
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3>Reviews</h3>
     </div>
     <div class="panel-body">
+
+        @if (ViewBag.Message != "")
+        {
+         <p>@ViewBag.Message</p>
+        }
+
         <div class="row">
             <div class="col-md-9 table-responsive">
                 <p>
                     @Html.ActionLink("Create New", "Create")
                 </p>
                 <table class="table">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.School.SchoolName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.City.CityName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Country.CountryName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ReviewText)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Rating)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model=> model.Date)
-                        </th>
-                        <th></th>
-                    </tr>
+                    <thead >
+                        <tr>
+                            <th >
+                                @Html.DisplayNameFor(model => model.School.SchoolName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.City.CityName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Country.CountryName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ReviewText)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Rating)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model=> model.Date)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
                     @foreach (var item in Model)
                     {
@@ -60,7 +72,8 @@
                             </td>
                             <td>
                                 @Html.ActionLink("Details", "Details", new { id = item.Id })
-                                @if (Request.IsAuthenticated)
+                                @*@if (Request.IsAuthenticated)*@
+                                @if(User.Identity.GetUserName().ToString() == "vaidya.supriya@gmail.com")
                                 {
                                     <div>
                                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

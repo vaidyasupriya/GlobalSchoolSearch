@@ -2,6 +2,7 @@
 @using PagedList.Mvc;
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/TableStyle.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 
 @{
@@ -56,6 +57,9 @@
                         <th>
                             @*Rating*@
                             @Html.ActionLink("Average Rating*", "Search", new { countryName = ViewBag.countryName, cityName = ViewBag.cityName, searchString = ViewBag.searchString, sortOrder = ViewBag.RatingSortParm, currentFilter = ViewBag.CurrentFilter })
+                        </th>
+                        <th>
+                           Details
                         </th>
                     </tr>
 

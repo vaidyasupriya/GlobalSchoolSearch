@@ -11,7 +11,27 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-8">
+           
+            <div class="col-md-6">
+                <h1> Parents / Other Users Login</h1>
+                <p><strong>For adding school reviews</strong></p>
+                <section id="socialLoginForm">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </section>
+                @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>*@
+                <!-- Advertise25 -->
+                @*<ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2361562748118340"
+                     data-ad-slot="9416505118"
+                     data-ad-format="auto"></ins>
+                <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+                </script>*@
+            </div>
+            <div class="col-md-6">
+                <h1> School Authorities Login</h1>
+                <p><strong>To register schools</strong></p>
                 <section id="loginForm">
                     @using (Html.BeginForm("Login", "Account", new
                     {
@@ -62,21 +82,6 @@
                         </p>
                     }
                 </section>
-            </div>
-            <div class="col-md-4">
-                @*<section id="socialLoginForm">
-                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                </section>*@
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- Advertise25 -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2361562748118340"
-                     data-ad-slot="9416505118"
-                     data-ad-format="auto"></ins>
-                <script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
         </div>
     </div>

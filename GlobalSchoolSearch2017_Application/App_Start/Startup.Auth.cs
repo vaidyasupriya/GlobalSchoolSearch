@@ -54,15 +54,15 @@ namespace GlobalSchoolSearch2017_Application
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "139447773371825",
+               appSecret: "c09aed8eb113ea15bae08ecf4d4c4e4b");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "964576238178-25fha21j928lqlb0t67kd11lb3fv545a.apps.googleusercontent.com",
+                ClientSecret = "mrGwkiF3CyvS5DV2SPkexdAh"
+            });
         }
     }
 }

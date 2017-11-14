@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Schools In Any City";
 }
-<link href="~/Content/Jumbotronstyle.css" rel="stylesheet" />
+@*<link href="~/Content/Jumbotronstyle.css" rel="stylesheet" />*@
 
 <style>
     .tooltip .tooltip-inner {
@@ -49,9 +49,9 @@
 <br />
 @*<marquee> New schools are added: A.K Joshi Thane, Podar International School Thane. SSC, ICSE, CBSE, CIE, IB, GCSE, IGCESE, Search for schools in Thane, Pune (India) International schools in Netherlands , Amsterdam, De Hague, Rotterdam  </marquee>*@
 
-<div class="jumbotron">
-    @*<h1>Global School Search</h1>
-    <h4>Search for the best schools in any city</h4>*@
+<div class="jumbotron jumbotron-align">
+    <h1>Global School Search</h1>
+    <h4>Search for the best schools in any city</h4>
 </div>
 
 @using (Html.BeginForm("Search", "SchoolSearch", FormMethod.Get))

@@ -8,6 +8,9 @@ namespace GlobalSchoolSearch2017_Application.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        public string DisplayName { get; set; }
+        public string HomeTown { get; set; }
     }
 
     public class ExternalLoginListViewModel

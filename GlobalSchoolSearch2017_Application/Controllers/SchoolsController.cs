@@ -44,11 +44,11 @@ namespace GlobalSchoolSearch2017_Application.Controllers
 
             var schools = db.Schools.Include(s => s.City).Include(s => s.Country);
 
-            if (Request.IsAuthenticated)
-            {
-                string userName = User.Identity.GetUserName().ToString();
-                schools = schools.Where(s => s.Authorizer_Email.Equals(userName));
-            }
+            //if (Request.IsAuthenticated)
+            //{
+            //    string userName = User.Identity.GetUserName().ToString();
+            //    schools = schools.Where(s => s.Authorizer_Email.Equals(userName));
+            //}
 
 
             if (!String.IsNullOrEmpty(searchString))
@@ -123,12 +123,23 @@ namespace GlobalSchoolSearch2017_Application.Controllers
         // GET: Schools/Create
         public ActionResult Create()
         {
+            string userName = User.Identity.GetUserName().ToString();
+            
             School newSchool = new School();
             newSchool.Date_of_Updatation = DateTime.Today.Date;
             ViewBag.CityName = new SelectList(db.Cities, "CityName", "CityName");
             ViewBag.CountryName = new SelectList(db.Countries, "CountryName", "CountryName");
-            
-            return View(newSchool);
+
+            if ((userName.Contains("info"))|| userName.Equals("vaidya.supriya@gmail.com"))
+            {
+                return View(newSchool);
+            }
+            else
+            {
+                ViewBag.Message = "You are not allowed to register a school. To register a school sign in as a school authority";
+                return View("SchoolError");
+            }
+           
         }
 
         // POST: Schools/Create
@@ -151,6 +162,11 @@ namespace GlobalSchoolSearch2017_Application.Controllers
             return View(school);
         }
 
+        public ActionResult SchoolError()
+        {
+           
+            return View();
+        }
 
         // GET: Schools/Edit/5
         [Authorize]

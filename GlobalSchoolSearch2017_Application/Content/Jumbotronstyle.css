@@ -1,10 +1,20 @@
-﻿.jumbotron {
+﻿.jumbotron-align {
     background-image: url(../Resources/NewLogo2.jpg);
-    background-size: auto;
-    /*background-size: contain;*/
+    max-width: 100%;
+    height: auto;
     background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    height: 300px;
-    overflow:auto;
+    /*background-size: auto;*/
+    /*background-size: contain;*/
+    /*background-position-x: center;
+    background-position-y: center;*/
+    /*height: 300px;*/
+    /*overflow:auto;*/
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
 }
