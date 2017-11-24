@@ -1,7 +1,9 @@
-﻿@model GlobalSchoolSearch2017_Application.Models.School
+﻿@using Microsoft.AspNet.Identity
+
+@model GlobalSchoolSearch2017_Application.Models.School
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.SchoolName + " Details";
 }
 <link href="~/Content/Details.css" rel="stylesheet" />
 <h2>Details</h2>
@@ -149,12 +151,12 @@
                     </dd>
 
                     @*<dt>
-                        @Html.DisplayNameFor(model => model.Authorizer_Email)
-                    </dt>
+                            @Html.DisplayNameFor(model => model.Authorizer_Email)
+                        </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Authorizer_Email)
-                    </dd>*@
+                        <dd>
+                            @Html.DisplayFor(model => model.Authorizer_Email)
+                        </dd>*@
                     <dt>
                         @Html.DisplayNameFor(model => model.Rating)
                     </dt>
@@ -185,6 +187,9 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { schoolName = Model.SchoolName }) |
+    @if (User.Identity.GetUserName().ToString() == "vaidya.supriya@gmail.com")
+    {
+        @Html.ActionLink("Edit", "Edit", new { schoolName = Model.SchoolName }) 
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

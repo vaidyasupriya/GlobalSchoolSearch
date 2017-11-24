@@ -3,31 +3,34 @@
 @model IEnumerable<GlobalSchoolSearch2017_Application.Models.Review>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "School Reviews by Parents";
 }
 <link href="~/Content/TableStyle.css" rel="stylesheet" />
 
 <br />
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3>Reviews</h3>
+        <div class="col-md-4">
+            <h3>Reviews</h3>
+        </div>
+        <div class="clo-md-8">
+            <a class="btn btn-info" href=@Url.Action("Create", "Reviews")>Write a Review &raquo;</a>
+        </div>        
     </div>
     <div class="panel-body">
 
         @if (ViewBag.Message != "")
         {
-         <p>@ViewBag.Message</p>
+            <p>@ViewBag.Message</p>
         }
 
         <div class="row">
-            <div class="col-md-9 table-responsive">
-                <p>
-                    @Html.ActionLink("Create New", "Create")
-                </p>
+            <div class="col-md-9 table-responsive">              
+                   
                 <table class="table">
-                    <thead >
+                    <thead>
                         <tr>
-                            <th >
+                            <th>
                                 @Html.DisplayNameFor(model => model.School.SchoolName)
                             </th>
                             <th>
@@ -43,7 +46,7 @@
                                 @Html.DisplayNameFor(model => model.Rating)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model=> model.Date)
+                                @Html.DisplayNameFor(model => model.Date)
                             </th>
                             <th></th>
                         </tr>
@@ -73,16 +76,16 @@
                             <td>
                                 @Html.ActionLink("Details", "Details", new { id = item.Id })
                                 @*@if (Request.IsAuthenticated)*@
-                                @if(User.Identity.GetUserName().ToString() == "vaidya.supriya@gmail.com")
+                                @if (User.Identity.GetUserName().ToString() == "vaidya.supriya@gmail.com")
                                 {
                                     <div>
                                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                        @Html.ActionLink("Delete", "Delete", new {id = item.Id })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                                     </div>
                                 }
 
                             </td>
-                           
+
                         </tr>
                     }
                 </table>
